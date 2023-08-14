@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Employee List</title>
+<link th:href="@{/css/style.css}" rel="stylesheet" />
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+	<h2 class="heading">Employee Management System</h2>
+	<a th:href="www.google.com" class="btn btn-light mb-3 btn-sm rounded-pill">LOGOUT</a>
+	<div class="container">
+		<h3 class="first">Employees Details</h3>
+		<a th:href="@{/crud/showformtoadd}"
+			class="btn btn-primary mb-3 btn-sm">Add Employee</a>
+		<table class="table table-bordered table-striped">
+			<thead class="table-dark">
+				<tr>
+					<th>ID</th>
+					<th>Name</th>
+					<th>Salary</th>
+					<th>Department</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr th:each="employee : ${employeedata}">
+					<td th:text="${employee.id}"></td>
+					<td th:text="${employee.name}"></td>
+					<td th:text="${employee.salary}"></td>
+					<td th:text="${employee.department}"></td>
+					<td><a
+						th:href="@{/crud/showformtoupdate(employeeid=${employee.id})}"
+						class="btn btn-success mb-3 btn-sm rounded-pill">Update</a> &nbsp;
+						<a th:href="@{/crud/delete(employeeid=${employee.id})}"
+						class="btn btn-danger mb-3 btn-sm rounded-pill"
+						onclick="if(!(confirm('Sure to Delete Employee ?'))) return false">Delete</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<hr>
+	</div>
+</body>
+</html>
